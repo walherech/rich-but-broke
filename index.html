@@ -209,6 +209,7 @@
   }
 
   .nav-cta:hover { background: var(--gold-light); }
+  .nav-hamburger { display: none; }
 
   /* ─── HERO ─── */
   #hero {
@@ -1010,9 +1011,69 @@
   @media (max-width: 900px) {
     nav { padding: 20px 24px; }
     .nav-links { display: none; }
+    .nav-cta { display: none; }
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 200;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--cream);
+      transition: all 0.25s ease;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(8,8,8,0.97);
+      z-index: 150;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu .mobile-cta {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 14px 28px;
+      margin-top: 8px;
+    }
     #hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { padding: 120px 24px 80px; }
+    .hero-left { padding: 120px 24px 40px; }
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      padding: 0 24px 80px;
+      order: 2;
+    }
+    .book-visual { width: 200px; }
+    .hero-left { order: 1; }
     .problem-grid, .chapters-header, .offer-grid, .authors-grid { grid-template-columns: 1fr; gap: 40px; }
     .chapters-grid { grid-template-columns: 1fr; }
     .stats-inner { grid-template-columns: 1fr; }
@@ -1020,6 +1081,8 @@
     .section-inner { padding: 0 24px; }
     .stat-item { padding: 32px 24px; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
+    .authors-grid { grid-template-columns: 1fr; }
+    .stat-number { font-size: 38px; }
   }
 </style>
 </head>
@@ -1035,7 +1098,19 @@
     <li><a href="#offer">Get the Book</a></li>
   </ul>
   <a href="https://amzn.to/41T0n4E" target="_blank" class="nav-cta">Get the Book →</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#problem" onclick="closeMenu()">The Problem</a>
+  <a href="#chapters" onclick="closeMenu()">Inside</a>
+  <a href="#authors" onclick="closeMenu()">Authors</a>
+  <a href="#offer" onclick="closeMenu()">Get the Book</a>
+  <a href="https://amzn.to/41T0n4E" target="_blank" class="mobile-cta" onclick="closeMenu()">Buy on Amazon →</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -1178,7 +1253,7 @@
     <div class="authors-grid">
       <div class="author-card fade-up">
         <div class="author-avatar may"><img src="may.jpg" alt="Dr. May Shawi"></div>
-        <div class="author-role">The Practitioner</div>
+        <div class="author-role">The Executive</div>
         <h3 class="author-name">Dr. May Shawi</h3>
         <div class="author-divider"></div>
         <p class="author-bio">A pharmaceutical executive and strategist who built a distinguished 20-year career launching life-changing therapies worldwide — then realized that despite following every rule, trading time for money couldn't build true security. Now an entrepreneur, mentor, and passionate advocate for financial freedom and generational wealth.</p>
@@ -1376,6 +1451,22 @@
       btn.style.color = '#A8D878';
     }, 1200);
   }
+
+  // Mobile menu
+  function toggleMenu() {
+    const btn = document.getElementById('hamburger');
+    const menu = document.getElementById('mobileMenu');
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  window.toggleMenu = toggleMenu;
+  window.closeMenu = closeMenu;
 </script>
 </body>
 </html>
