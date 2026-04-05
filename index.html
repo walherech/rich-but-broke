@@ -223,33 +223,81 @@
 
   .book-visual {
     position: relative;
-    width: 300px;
+    width: 280px;
   }
 
-  .book-cover-img {
+  .book-cover {
     width: 100%;
-    display: block;
+    aspect-ratio: 3/4;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    position: relative;
     box-shadow: 
-      -10px 10px 0 0 rgba(201,168,76,0.4),
-      30px 30px 80px rgba(0,0,0,0.9),
-      0 0 120px rgba(220,100,30,0.12);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+      -8px 8px 0 0 var(--gold-dim),
+      20px 20px 60px rgba(0,0,0,0.8),
+      0 0 80px rgba(201,168,76,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 28px;
   }
 
-  .book-visual:hover .book-cover-img {
-    transform: translateY(-6px) rotate(-1deg);
-    box-shadow: 
-      -14px 14px 0 0 rgba(201,168,76,0.5),
-      40px 40px 100px rgba(0,0,0,0.95),
-      0 0 140px rgba(220,100,30,0.18);
+  .book-cover-top {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .book-cover-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--cream);
+    text-align: center;
+  }
+
+  .book-cover-title em {
+    display: block;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+
+  .book-cover-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+    margin: 16px 0;
+  }
+
+  .book-cover-subtitle {
+    font-family: var(--serif);
+    font-size: 11px;
+    font-style: italic;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  .book-cover-authors {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.8;
   }
 
   .book-badge {
     position: absolute;
     top: -16px;
-    right: -20px;
-    width: 84px;
-    height: 84px;
+    right: -16px;
+    width: 80px;
+    height: 80px;
     background: var(--gold);
     border-radius: 50%;
     display: flex;
@@ -257,14 +305,13 @@
     align-items: center;
     justify-content: center;
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 8px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--black);
-    font-weight: 500;
-    line-height: 1.5;
+    font-weight: 400;
+    line-height: 1.4;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(201,168,76,0.4);
   }
 
   /* ─── STATS BAR ─── */
@@ -545,8 +592,8 @@
   }
 
   .author-avatar {
-    width: 88px;
-    height: 88px;
+    width: 64px;
+    height: 64px;
     background: var(--surface);
     border: 1px solid var(--border);
     margin-bottom: 24px;
@@ -554,32 +601,21 @@
     align-items: center;
     justify-content: center;
     font-family: var(--serif);
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 300;
     color: var(--gold);
     position: relative;
-    overflow: hidden;
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
-  }
-
-  .author-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
   }
 
   .author-avatar::after {
     content: '';
     position: absolute;
-    bottom: -5px;
-    right: -5px;
+    bottom: -4px;
+    right: -4px;
     width: 100%;
     height: 100%;
     border: 1px solid var(--gold-dim);
     z-index: -1;
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
   }
 
   .author-role {
@@ -907,7 +943,7 @@
 
 <!-- NAV -->
 <nav>
-  <img src="opp-logo.png" alt="The One Percent Playbook" style="height:32px; display:block;">
+  <div class="nav-logo">One Percent Playbook</div>
   <ul class="nav-links">
     <li><a href="#problem">The Problem</a></li>
     <li><a href="#chapters">Inside</a></li>
@@ -923,7 +959,7 @@
   <div class="hero-grain"></div>
 
   <div class="hero-left">
-    <div class="hero-eyebrow fade-up">One Percent Playbook · A Financial Masterclass for Physicians</div>
+    <div class="hero-eyebrow fade-up">A Financial Masterclass for Physicians</div>
     <h1 class="hero-title fade-up delay-1">
       Doctor,<br>
       You're Rich<br>
@@ -932,7 +968,7 @@
     <p class="hero-subtitle fade-up delay-2">
       You spent a decade becoming a physician. You earn more than 97% of Americans. 
       And yet — after taxes, lifestyle, and bad advice — you have almost nothing to show for it. 
-      <em>Earn More. Keep More. Live More.</em>
+      This book changes that.
     </p>
     <div class="hero-cta-group fade-up delay-3">
       <a href="#offer" class="btn-primary">Claim Your Free Copy</a>
@@ -942,8 +978,23 @@
 
   <div class="hero-right">
     <div class="book-visual fade-up delay-2">
-      <img src="book-cover.jpg" alt="Doctor, You're Rich But Still Broke" class="book-cover-img">
-      <div class="book-badge">Free<br>Copy<br>↓</div>
+      <div class="book-cover">
+        <div class="book-cover-top">One Percent Playbook</div>
+        <div>
+          <div class="book-cover-title">
+            Doctor, You're Rich
+            <em>But Still Broke</em>
+          </div>
+          <div class="book-cover-line"></div>
+          <div class="book-cover-subtitle">The Financial Playbook Your Medical School Didn't Teach You</div>
+        </div>
+        <div class="book-cover-authors">
+          Wissam Alherech, CPA<br>
+          Dr. May Shawi, MD<br>
+          Payeman Raja
+        </div>
+      </div>
+      <div class="book-badge">Free<br>Copy</div>
     </div>
   </div>
 </section>
@@ -1024,25 +1075,25 @@
     </div>
     <div class="chapters-grid">
       <div class="chapter-card fade-up">
-        <div class="chapter-num">Part One</div>
-        <span class="chapter-icon">🧠</span>
-        <h3 class="chapter-title">Everything You Think You Know About Money Is Wrong</h3>
-        <p class="chapter-desc">The system wasn't designed for you to build wealth — it was designed for you to be a highly taxed, high-income employee. This section dismantles the myths physicians are taught about money, debt, and financial security, and introduces the Wealth Waterfall™ framework that changes everything.</p>
-        <span class="chapter-tag">Mindset Reset</span>
+        <div class="chapter-num">Chapter One</div>
+        <span class="chapter-icon">⚖️</span>
+        <h3 class="chapter-title">The Tax Shield</h3>
+        <p class="chapter-desc">How to legally restructure your professional income through entity strategies, bonus depreciation, cost segregation, and cost-of-living deductions that most CPAs never bring up. Stop paying the physician tax rate. Start paying the investor tax rate.</p>
+        <span class="chapter-tag">Tax Strategy</span>
       </div>
       <div class="chapter-card fade-up delay-1">
-        <div class="chapter-num">Part Two & Three</div>
-        <span class="chapter-icon">⚙️</span>
-        <h3 class="chapter-title">The Wealth Waterfall™ in Action</h3>
-        <p class="chapter-desc">LLCs, tax-advantaged structures, real estate strategies that save six figures in taxes, charitable contributions that put money back in your pocket, infinite banking, and private equity access. The strategies the ultra-wealthy have used for generations — broken down for physicians.</p>
-        <span class="chapter-tag">Strategy & Structure</span>
+        <div class="chapter-num">Chapter Two</div>
+        <span class="chapter-icon">🛡️</span>
+        <h3 class="chapter-title">Asset Immunity</h3>
+        <p class="chapter-desc">Why malpractice coverage is only half the equation. This chapter maps the full asset protection architecture — trusts, entity layering, and titling strategies — that insulates your personal wealth from professional liability and predatory litigation.</p>
+        <span class="chapter-tag">Asset Protection</span>
       </div>
       <div class="chapter-card fade-up delay-2">
-        <div class="chapter-num">Part Four</div>
-        <span class="chapter-icon">🚀</span>
-        <h3 class="chapter-title">You Have the Opportunity. What Now?</h3>
-        <p class="chapter-desc">Curiosity as your secret weapon. Building the advisory team you actually need. And a clear roadmap from where you are today to work-optional status — using the systems, not the hustle. The future is yours to build, and you don't have to figure it out alone.</p>
-        <span class="chapter-tag">Execution</span>
+        <div class="chapter-num">Chapter Three</div>
+        <span class="chapter-icon">📈</span>
+        <h3 class="chapter-title">The Exit Velocity</h3>
+        <p class="chapter-desc">The 10-year capital blueprint to work-optional status. How to stop trading hours for dollars and build a self-sustaining income engine through real estate, private markets, and tax-advantaged vehicles that compound faster than inflation takes.</p>
+        <span class="chapter-tag">Wealth Architecture</span>
       </div>
     </div>
   </div>
@@ -1057,39 +1108,39 @@
     </div>
     <div class="authors-grid">
       <div class="author-card fade-up">
-        <div class="author-avatar"><img src="may.jpg" alt="Dr. May Shawi"></div>
-        <div class="author-role">The Practitioner</div>
-        <h3 class="author-name">Dr. May Shawi</h3>
+        <div class="author-avatar">WA</div>
+        <div class="author-role">The Strategist</div>
+        <h3 class="author-name">Wissam Alherech</h3>
         <div class="author-divider"></div>
-        <p class="author-bio">A pharmaceutical executive and strategist who built a distinguished 20-year career launching life-changing therapies worldwide — then realized that despite following every rule, trading time for money couldn't build true security. Now an entrepreneur, mentor, and passionate advocate for financial freedom and generational wealth.</p>
+        <p class="author-bio">Former Big Four CPA with audit experience across public and private companies. Built the CLEAR™ Tax Mitigation Program and has structured tax strategy for dozens of high-income earners across the country.</p>
         <div class="author-credential">
-          PhD, Experimental Medicine · McGill University<br>
-          Master's Degree · Harvard University<br>
-          Pharmaceutical Executive turned Entrepreneur
+          Big Four CPA · Deloitte & PwC<br>
+          Founder, One Percent Playbook<br>
+          Tax Strategist & Entrepreneur
         </div>
       </div>
       <div class="author-card fade-up delay-1">
-        <div class="author-avatar"><img src="payeman.jpg" alt="Payeman Raja"></div>
-        <div class="author-role">The Architect</div>
-        <h3 class="author-name">Payeman Raja</h3>
+        <div class="author-avatar">MS</div>
+        <div class="author-role">The Practitioner</div>
+        <h3 class="author-name">Dr. May Shawi</h3>
         <div class="author-divider"></div>
-        <p class="author-bio">Spent 15 years on the business side of healthcare before pivoting during COVID to the world of alternative investments — joining a private equity firm, accessing institutional-grade pre-IPO deals, then launching his own PE and VC firm with a mission to bring those opportunities to minority founders and investors.</p>
+        <p class="author-bio">A practicing physician who lived through the exact financial gaps this book addresses — high income, high taxes, and zero financial architecture — and rebuilt her financial life from the inside out.</p>
         <div class="author-credential">
-          MBA in Healthcare · Boston University<br>
-          Private Equity & Venture Capital Founder<br>
-          Alternative Investments Strategist
+          Medical Doctor · SPM Group LLC<br>
+          Physician-Entrepreneur<br>
+          Financial Education Advocate
         </div>
       </div>
       <div class="author-card fade-up delay-2">
-        <div class="author-avatar"><img src="sam.png" alt="Sam Alherech"></div>
-        <div class="author-role">The Strategist</div>
-        <h3 class="author-name">Sam Alherech</h3>
+        <div class="author-avatar">PR</div>
+        <div class="author-role">The Architect</div>
+        <h3 class="author-name">Payeman Raja</h3>
         <div class="author-divider"></div>
-        <p class="author-bio">Former CPA who spent five years across Deloitte and PricewaterhouseCoopers auditing alternative investments — hedge funds and private equity — then moved to Fortune 1000 private accounting before realizing his passion was helping individuals navigate the financial world that successful professionals, including his own physician family members, were never taught to master.</p>
+        <p class="author-bio">Capital allocation and wealth architecture specialist. Designs the multi-entity structures and investment frameworks that transform high physician incomes into self-sustaining, protected wealth engines.</p>
         <div class="author-credential">
-          Former CPA · Deloitte & PricewaterhouseCoopers<br>
-          Tax Strategist & Entrepreneur<br>
-          Founder, One Percent Playbook
+          Wealth Architect · SPM Group LLC<br>
+          Capital Allocation Specialist<br>
+          Private Markets Strategist
         </div>
       </div>
     </div>
@@ -1154,20 +1205,6 @@
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
-<section style="padding: 80px 0; border-top: 1px solid var(--border); background: var(--charcoal);">
-  <div class="section-inner" style="max-width: 800px;">
-    <p class="final-quote fade-up" style="margin-bottom: 24px;">"What May, Sam, and Payeman have built with the Wealth Waterfall™ Methodology is something I rarely see: a comprehensive system to fuel true asset growth, even when you think you don't have enough capital to do anything big with."</p>
-    <div style="display:flex; align-items:center; gap:16px; justify-content:center;" class="fade-up delay-1">
-      <div style="width:1px; height:32px; background:var(--gold-dim);"></div>
-      <div>
-        <div style="font-family:var(--serif); font-size:16px; color:var(--cream);">Kiana Danial</div>
-        <div style="font-family:var(--mono); font-size:9px; letter-spacing:0.15em; color:var(--gold-dim); margin-top:4px;">BESTSELLING AUTHOR · FOUNDER, INVEST DIVA</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FINAL CTA -->
 <section id="final-cta">
   <div class="section-inner">
@@ -1184,7 +1221,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="opp-logo.png" alt="The One Percent Playbook" style="height:24px; display:block; opacity:0.6;">
+  <div class="footer-logo">Doctor, You're Rich But Still Broke</div>
   <div class="footer-copy">© 2025 SPM Group LLC. All rights reserved.</div>
   <div class="footer-brand">One Percent Playbook</div>
 </footer>
